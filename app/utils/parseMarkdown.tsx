@@ -22,7 +22,7 @@ export function parseMarkdown(text: string): React.ReactNode {
               {idx < quoteBuffer.length - 1 && <br />}
             </React.Fragment>
           ))}
-        </div>
+        </div>,
       );
       quoteBuffer = [];
     }
@@ -42,7 +42,7 @@ export function parseMarkdown(text: string): React.ReactNode {
         elements.push(
           <React.Fragment key={`line-${elementIndex++}`}>
             {parseBoldAndMentions(line)}
-          </React.Fragment>
+          </React.Fragment>,
         );
       }
     }
@@ -74,7 +74,7 @@ function parseBoldAndMentions(text: string): React.ReactNode {
       parts.push(
         <React.Fragment key={`text-${partIndex++}`}>
           {parseMentions(beforeText)}
-        </React.Fragment>
+        </React.Fragment>,
       );
     }
 
@@ -83,7 +83,7 @@ function parseBoldAndMentions(text: string): React.ReactNode {
     parts.push(
       <strong key={`bold-${partIndex++}`} className="font-bold">
         {parseMentions(boldText)}
-      </strong>
+      </strong>,
     );
 
     lastIndex = match.index + match[0].length;
@@ -95,7 +95,7 @@ function parseBoldAndMentions(text: string): React.ReactNode {
     parts.push(
       <React.Fragment key={`text-${partIndex++}`}>
         {parseMentions(remainingText)}
-      </React.Fragment>
+      </React.Fragment>,
     );
   }
 
