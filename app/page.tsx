@@ -67,6 +67,9 @@ export default function Home() {
                 rows={8}
                 className="resize-none"
               />
+              <p className="text-xs text-muted-foreground">
+                メンションを使用する場合: ユーザー <code className="text-xs px-1 rounded text-[#dea700] bg-[#ffe2973d] font-semibold">&lt;@id&gt;</code>、ロール <code className="text-xs px-1 rounded text-[#dea700] bg-[#ffe2973d] font-semibold">&lt;@&amp;id&gt;</code>、チャンネル <code className="text-xs px-1 rounded text-[#dea700] bg-[#ffe2973d] font-semibold">&lt;#id&gt;</code>
+              </p>
             </div>
 
             {embeds.map((embed, index) => (

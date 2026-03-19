@@ -1,6 +1,7 @@
 import { Card, CardContent } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
 import type { Embed } from '../hooks/useWebhookForm';
+import { parseMentions } from '../utils/parseMentions';
 
 interface MessagePreviewProps {
   content: string;
@@ -13,6 +14,15 @@ export function MessagePreview({ content, embeds }: MessagePreviewProps) {
       <CardContent className="p-5">
         <div className="space-y-3">
           <Label htmlFor="content" className='mb-2'>プレビュー</Label>
+
+          <div className="text-xs text-muted-foreground mb-3 p-3 bg-muted/50 rounded border border-border">
+            メンション表示はプレビューです。実際のDiscordでは対応する名前や色が表示されます。
+            <div className="mt-1 space-y-0.5">
+              <div>• ユーザー: <code className="text-xs ">&lt;@id&gt;</code> または <code className="text-xs ">&lt;@!id&gt;</code></div>
+              <div>• ロール: <code className="text-xs ">&lt;@&amp;id&gt;</code></div>
+              <div>• チャンネル: <code className="text-xs ">&lt;#id&gt;</code></div>
+            </div>
+          </div>
 
           <div className="bg-[#36393f] dark:bg-[#36393f] rounded-lg p-4">
             <div className="flex gap-3">
@@ -28,7 +38,7 @@ export function MessagePreview({ content, embeds }: MessagePreviewProps) {
 
                 {content && (
                   <div className="text-[#dcddde] text-sm mb-2 whitespace-pre-wrap break-words">
-                    {content}
+                    {parseMentions(content)}
                   </div>
                 )}
 
@@ -47,7 +57,7 @@ export function MessagePreview({ content, embeds }: MessagePreviewProps) {
                         )}
                         {embed.description && (
                           <div className="text-[#dcddde] text-sm whitespace-pre-wrap break-words">
-                            {embed.description}
+                            {parseMentions(embed.description)}
                           </div>
                         )}
                       </div>
