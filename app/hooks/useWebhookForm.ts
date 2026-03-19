@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useLocalStorage } from './useLocalStorage';
 
 export interface Embed {
   id: string;
@@ -8,7 +9,7 @@ export interface Embed {
 }
 
 export function useWebhookForm() {
-  const [webhookUrl, setWebhookUrl] = useState('');
+  const [webhookUrl, setWebhookUrl] = useLocalStorage('discord-webhook-url', '');
   const [content, setContent] = useState('');
   const [embeds, setEmbeds] = useState<Embed[]>([]);
   const [isLoading, setIsLoading] = useState(false);
