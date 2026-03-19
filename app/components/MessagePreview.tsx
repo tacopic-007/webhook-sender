@@ -1,7 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import type { Embed } from "../hooks/useWebhookForm";
-import { parseMentions } from "../utils/parseMentions";
+import { parseMarkdown } from "../utils/parseMarkdown";
 
 interface MessagePreviewProps {
   content: string;
@@ -50,8 +50,8 @@ export function MessagePreview({ content, embeds }: MessagePreviewProps) {
                 </div>
 
                 {content && (
-                  <div className="text-[#dcddde] text-sm mb-2 whitespace-pre-wrap break-words">
-                    {parseMentions(content)}
+                  <div className="text-[#dcddde] text-sm mb-2 break-words">
+                    {parseMarkdown(content)}
                   </div>
                 )}
 
@@ -69,8 +69,8 @@ export function MessagePreview({ content, embeds }: MessagePreviewProps) {
                           </div>
                         )}
                         {embed.description && (
-                          <div className="text-[#dcddde] text-sm whitespace-pre-wrap break-words">
-                            {parseMentions(embed.description)}
+                          <div className="text-[#dcddde] text-sm break-words">
+                            {parseMarkdown(embed.description)}
                           </div>
                         )}
                       </div>
