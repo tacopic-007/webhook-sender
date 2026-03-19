@@ -1,9 +1,9 @@
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { Button } from '@/components/ui/button';
-import { Label } from '@/components/ui/label';
-import { X } from 'lucide-react';
-import type { Embed } from '../hooks/useWebhookForm';
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
+import { X } from "lucide-react";
+import type { Embed } from "../hooks/useWebhookForm";
 
 interface EmbedFormProps {
   embed: Embed;
@@ -12,7 +12,12 @@ interface EmbedFormProps {
   onRemove: (id: string) => void;
 }
 
-export function EmbedForm({ embed, index, onUpdate, onRemove }: EmbedFormProps) {
+export function EmbedForm({
+  embed,
+  index,
+  onUpdate,
+  onRemove,
+}: EmbedFormProps) {
   return (
     <div className="space-y-2 p-4 border border-border rounded-lg relative">
       <div className="flex items-center justify-between mb-2">
@@ -34,7 +39,7 @@ export function EmbedForm({ embed, index, onUpdate, onRemove }: EmbedFormProps) 
           type="text"
           placeholder="埋め込みのタイトル"
           value={embed.title}
-          onChange={(e) => onUpdate(embed.id, 'title', e.target.value)}
+          onChange={(e) => onUpdate(embed.id, "title", e.target.value)}
           className="h-10"
         />
       </div>
@@ -45,7 +50,7 @@ export function EmbedForm({ embed, index, onUpdate, onRemove }: EmbedFormProps) 
           id={`embed-description-${embed.id}`}
           placeholder="埋め込みの説明"
           value={embed.description}
-          onChange={(e) => onUpdate(embed.id, 'description', e.target.value)}
+          onChange={(e) => onUpdate(embed.id, "description", e.target.value)}
           rows={4}
           className="resize-none"
         />
@@ -58,13 +63,13 @@ export function EmbedForm({ embed, index, onUpdate, onRemove }: EmbedFormProps) 
             id={`embed-color-${embed.id}`}
             type="color"
             value={embed.color}
-            onChange={(e) => onUpdate(embed.id, 'color', e.target.value)}
+            onChange={(e) => onUpdate(embed.id, "color", e.target.value)}
             className="h-10 w-20 cursor-pointer"
           />
           <Input
             type="text"
             value={embed.color}
-            onChange={(e) => onUpdate(embed.id, 'color', e.target.value)}
+            onChange={(e) => onUpdate(embed.id, "color", e.target.value)}
             className="h-10"
             placeholder="#5865f2"
           />

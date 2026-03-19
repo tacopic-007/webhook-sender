@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 export function parseMentions(text: string): React.ReactNode {
   if (!text) return text;
@@ -15,21 +15,26 @@ export function parseMentions(text: string): React.ReactNode {
     if (match.index > lastIndex) {
       const textContent = text.substring(lastIndex, match.index);
       parts.push(
-        <React.Fragment key={`text-${partIndex++}`}>{textContent}</React.Fragment>
+        <React.Fragment key={`text-${partIndex++}`}>
+          {textContent}
+        </React.Fragment>,
       );
     }
 
     const [fullMatch, prefix, id] = match;
 
     // メンションタイプに応じてスタイルを適用
-    if (prefix === '#') {
+    if (prefix === "#") {
       // チャンネルメンション
       parts.push(
-        <span key={`mention-${partIndex++}`} className="text-[#00a8fc] font-medium hover:underline cursor-pointer">
+        <span
+          key={`mention-${partIndex++}`}
+          className="text-[#00a8fc] font-medium hover:underline cursor-pointer"
+        >
           #channel
-        </span>
+        </span>,
       );
-    } else if (prefix === '@&') {
+    } else if (prefix === "@&") {
       // ロールメンション
       parts.push(
         <span
@@ -37,9 +42,9 @@ export function parseMentions(text: string): React.ReactNode {
           className="bg-[#5865f21a] text-[#b3baff] font-medium rounded px-0.5 hover:bg-[#5865f233] cursor-pointer"
         >
           @role
-        </span>
+        </span>,
       );
-    } else if (prefix === '@' || prefix === '@!') {
+    } else if (prefix === "@" || prefix === "@!") {
       // ユーザーメンション
       parts.push(
         <span
@@ -47,7 +52,7 @@ export function parseMentions(text: string): React.ReactNode {
           className="bg-[#5865f21a] text-[#b3baff] font-medium rounded px-0.5 hover:bg-[#5865f233] cursor-pointer"
         >
           @user
-        </span>
+        </span>,
       );
     }
 
@@ -58,7 +63,9 @@ export function parseMentions(text: string): React.ReactNode {
   if (lastIndex < text.length) {
     const textContent = text.substring(lastIndex);
     parts.push(
-      <React.Fragment key={`text-${partIndex++}`}>{textContent}</React.Fragment>
+      <React.Fragment key={`text-${partIndex++}`}>
+        {textContent}
+      </React.Fragment>,
     );
   }
 

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 export function useLocalStorage<T>(key: string, initialValue: T) {
   const [value, setValue] = useState<T>(initialValue);
@@ -17,11 +17,12 @@ export function useLocalStorage<T>(key: string, initialValue: T) {
 
   // 値が変更されたらlocalStorageに保存
   useEffect(() => {
-    if (value !== initialValue || value !== '') {
-      if (value === '' || value === null || value === undefined) {
+    if (value !== initialValue || value !== "") {
+      if (value === "" || value === null || value === undefined) {
         localStorage.removeItem(key);
       } else {
-        const valueToStore = typeof value === 'string' ? value : JSON.stringify(value);
+        const valueToStore =
+          typeof value === "string" ? value : JSON.stringify(value);
         localStorage.setItem(key, valueToStore);
       }
     }
