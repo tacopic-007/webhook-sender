@@ -8,6 +8,7 @@ import { Label } from '@/components/ui/label';
 import { Plus } from 'lucide-react';
 import { useWebhookForm } from './hooks/useWebhookForm';
 import { EmbedForm } from './components/EmbedForm';
+import { MessagePreview } from './components/MessagePreview';
 
 export default function Home() {
   const {
@@ -22,13 +23,27 @@ export default function Home() {
     isLoading,
     status,
     handleSubmit,
+    showPreview,
+    setShowPreview,
   } = useWebhookForm();
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-950 dark:to-slate-900">
-      <Card className="w-full max-w-2xl p-0">
-        <CardContent className="p-5">
-          <form onSubmit={handleSubmit} className="space-y-6">
+      <div className={`w-full ${showPreview ? 'max-w-7xl' : 'max-w-2xl'}`}>
+        <div className="mb-4 flex justify-end">
+          <button
+            type="button"
+            onClick={() => setShowPreview(!showPreview)}
+            className="text-sm text-foreground underline hover:no-underline"
+          >
+            {showPreview ? 'プレビューを非表示' : 'プレビューを表示'}
+          </button>
+        </div>
+
+        <div className={`grid gap-4 ${showPreview ? 'grid-cols-2' : 'grid-cols-1'}`}>
+          <Card className="w-full p-0">
+            <CardContent className="p-5">
+              <form onSubmit={handleSubmit} className="space-y-6">
             <div className="space-y-2">
               <Label htmlFor="webhookUrl">Webhook URL</Label>
               <Input
@@ -68,7 +83,7 @@ export default function Home() {
               type="button"
               variant="outline"
               onClick={addEmbed}
-              className="w-full h-10"
+              className="w-full h-10 mb-2"
             >
               <Plus className="size-4" />
               埋め込みを追加する
@@ -89,9 +104,15 @@ export default function Home() {
             <Button type="submit" disabled={isLoading} className="w-full h-10">
               {isLoading ? '送信中...' : '送信'}
             </Button>
-          </form>
-        </CardContent>
-      </Card>
+              </form>
+            </CardContent>
+          </Card>
+
+          {showPreview && (
+            <MessagePreview content={content} embeds={embeds} />
+          )}
+        </div>
+      </div>
     </div>
   );
 }

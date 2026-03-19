@@ -13,6 +13,7 @@ export function useWebhookForm() {
   const [embeds, setEmbeds] = useState<Embed[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [status, setStatus] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
+  const [showPreview, setShowPreview] = useState(false);
 
   const addEmbed = () => {
     const newEmbed: Embed = {
@@ -88,5 +89,7 @@ export function useWebhookForm() {
     isLoading,
     status,
     handleSubmit,
+    showPreview,
+    setShowPreview,
   };
 }
